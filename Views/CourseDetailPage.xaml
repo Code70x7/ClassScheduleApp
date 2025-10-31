@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClassScheduleApp.Views.CourseDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Course Details">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="16">
+
+                <!-- Course Title -->
+                <Entry x:Name="TitleEntry"
+                       Placeholder="Course title"
+                       FontSize="18" />
+
+                <!-- Dates -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <VerticalStackLayout>
+                        <Label Text="Start Date" />
+                        <DatePicker x:Name="StartDatePicker" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="End Date" />
+                        <DatePicker x:Name="EndDatePicker" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Due Date -->
+                <VerticalStackLayout>
+                    <Label Text="Due Date" />
+                    <DatePicker x:Name="DueDatePicker" />
+                </VerticalStackLayout>
+
+                <!-- Status -->
+                <VerticalStackLayout>
+                    <Label Text="Status" />
+                    <Picker x:Name="StatusPicker">
+                        <Picker.Items>
+                            <x:String>InProgress</x:String>
+                            <x:String>Completed</x:String>
+                            <x:String>Dropped</x:String>
+                            <x:String>PlanToTake</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+
+                <!-- Instructor Info -->
+                <Label Text="Instructor Info" FontAttributes="Bold" />
+                <Entry x:Name="InstructorNameEntry" Placeholder="Name" />
+                <Entry x:Name="InstructorPhoneEntry" Placeholder="Phone" Keyboard="Telephone" />
+                <Entry x:Name="InstructorEmailEntry" Placeholder="Email" Keyboard="Email" />
+
+                <!-- Notes -->
+                <Label Text="Notes (optional)" />
+                <Editor x:Name="NotesEditor"
+                        Placeholder="Any notes about this course..."
+                        AutoSize="TextChanges"
+                        HeightRequest="100" />
+
+                <!-- Save Button -->
+                <Button Text="Save Course"
+                        x:Name="SaveBtn"
+                        Clicked="SaveCourse_Clicked"
+                        BackgroundColor="#6C63FF"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Padding="10,5" />
+
+                <!-- ================== Assessments ================== -->
+                <Label Text="Assessments" FontAttributes="Bold" FontSize="16" />
+
+                <!-- Add Assessment Buttons -->
+                <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="12" Margin="0,8,0,0">
+                    <Button Text="Add OA"   Clicked="AddOA_Clicked" />
+                    <Button Grid.Column="1" Text="Add PA"   Clicked="AddPA_Clicked" />
+                    <Button Grid.Column="2" Text="Add Test" Clicked="AddTest_Clicked" />
+                </Grid>
+
+                <!-- Assessment List -->
+                <CollectionView x:Name="AssessmentsCollection"
+                                SelectionMode="None"
+                                Margin="0,10,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Assessment card -->
+                            <Frame Padding="12" Margin="0,8,0,0" BorderColor="#CCCCCC" HasShadow="False">
+                                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+
+                                    <!-- Header: title/type/dates -->
+                                    <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2" Spacing="2">
+                                        <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label Text="{Binding Type}" FontSize="12" />
+                                            <Label FontSize="12">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0:MMM d, yyyy} – {1:MMM d, yyyy}">
+                                                        <Binding Path="StartDate" />
+                                                        <Binding Path="EndDate" />
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <!-- Inline notes editor -->
+                                    <Editor Grid.Row="1" Grid.ColumnSpan="2"
+                                            Text="{Binding Notes, Mode=TwoWay}"
+                                            Placeholder="Notes for this assessment..."
+                                            AutoSize="TextChanges"
+                                            MinimumHeightRequest="60" 
+                                            Unfocused="AssessmentNotes_Unfocused" />
+
+                                    <!-- Actions -->
+                                    <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2"
+                                                           Spacing="12" Margin="0,8,0,0">
+                                        <Button Text="Edit"
+                                                CommandParameter="{Binding .}"
+                                                Clicked="EditAssessment_Clicked" />
+                                        <Button Text="Delete"
+                                                CommandParameter="{Binding .}"
+                                                Clicked="DeleteAssessment_Clicked" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- ================== To-Do List ================== -->
+                <Label Text="To-Do List" FontAttributes="Bold" FontSize="16" />
+
+                <!-- Wider add row -->
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <Entry x:Name="NewTodoEntry"
+                           Placeholder="New task..."
+                           HorizontalOptions="FillAndExpand" />
+                    <Button Grid.Column="1" Text="Add" Clicked="AddTodo_Clicked" />
+                </Grid>
+
+                <!-- Optional due date picker for new item -->
+                <DatePicker x:Name="TodoDueDate" />
+
+                <!-- Existing todos -->
+                <CollectionView x:Name="TodosCollection" SelectionMode="None" Margin="0,6,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="0,8,0,0" BorderColor="#CCCCCC" HasShadow="False">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12" VerticalOptions="Center">
+                                    <CheckBox IsChecked="{Binding IsCompleted}" VerticalOptions="Center" />
+
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="{Binding Title}" />
+                                        <Label Text="{Binding DueDate, StringFormat='Due: {0:MMM d, yyyy}'}"
+                                               FontSize="12"
+                                               TextColor="Gray" />
+                                    </VerticalStackLayout>
+
+                                    <Button Grid.Column="2"
+                                            Text="Delete"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="DeleteTodo_Clicked"
+                                            BackgroundColor="#E57373"
+                                            TextColor="White"
+                                            CornerRadius="8"
+                                            Margin="8,0,0,0" />
+                                    <!-- extra spacing from the text -->
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

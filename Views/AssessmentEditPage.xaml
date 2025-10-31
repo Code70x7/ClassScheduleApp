@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClassScheduleApp.Views.AssessmentEditPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Edit Assessment">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="14">
+
+            <Label Text="Title" FontAttributes="Bold"/>
+            <Entry x:Name="TitleEntry" Placeholder="e.g., Objective Assessment" />
+
+            <Label Text="Type" FontAttributes="Bold"/>
+            <Picker x:Name="TypePicker">
+                <Picker.Items>
+                    <x:String>Objective</x:String>
+                    <x:String>Performance</x:String>
+                    <x:String>NormalTest</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <VerticalStackLayout>
+                    <Label Text="Start" FontAttributes="Bold"/>
+                    <DatePicker x:Name="StartPicker"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="End" FontAttributes="Bold"/>
+                    <DatePicker x:Name="EndPicker"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Button Text="Save" Clicked="Save_Clicked" CornerRadius="18" Padding="18,12"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

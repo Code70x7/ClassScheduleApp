@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClassScheduleApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Sign In"
+    BackgroundColor="#F7F8FF">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32,48" Spacing="20">
+
+            <!-- Header -->
+            <Label Text="Welcome"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#2B2B2B"
+                   HorizontalOptions="Center" />
+
+            <!-- Email Field -->
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Keyboard="Email"
+                   ClearButtonVisibility="WhileEditing"
+                   FontSize="18"
+                   TextColor="Black"
+                   BackgroundColor="White"
+                   HeightRequest="45"
+                   />
+
+            <!-- Password Field -->
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   ClearButtonVisibility="WhileEditing"
+                   FontSize="18"
+                   TextColor="Black"
+                   BackgroundColor="White"
+                   HeightRequest="45"
+                   />
+
+            <!-- Sign In Button -->
+            <Button Text="Sign In"
+                    Clicked="SignIn_Clicked"
+                    TextColor="White"
+                    CornerRadius="16"
+                    FontSize="18"
+                    HeightRequest="50"
+                    Background="{StaticResource PrimaryButtonBrush}" />
+
+            <!-- Divider -->
+            <BoxView HeightRequest="1"
+                     Margin="0,10"
+                     BackgroundColor="#DDDDDD" />
+
+            <!-- Create Account Button -->
+            <Button Text="Create Account"
+                    Clicked="GoRegister_Clicked"
+                    BackgroundColor="#EAEAEA"
+                    TextColor="#333333"
+                    CornerRadius="16"
+                    FontSize="18"
+                    HeightRequest="50"
+                    />
+
+            <!-- Footer Note -->
+            <Label Text="Class Schedule App"
+                   FontSize="12"
+                   TextColor="#777"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

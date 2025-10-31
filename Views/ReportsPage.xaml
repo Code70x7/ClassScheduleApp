@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClassScheduleApp.Views.ReportsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Reports">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Summary -->
+            <Frame Padding="14" BorderColor="#ddd" HasShadow="False">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Summary" FontAttributes="Bold" FontSize="16"/>
+                    <Grid ColumnDefinitions="*,*,*">
+                        <VerticalStackLayout>
+                            <Label Text="Terms" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="TermsCountLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="Courses" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="CoursesCountLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2">
+                            <Label Text="Open To-Dos" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="OpenTodosLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Assessments by Type -->
+            <Frame Padding="14" BorderColor="#ddd" HasShadow="False">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Assessments by Type" FontAttributes="Bold" FontSize="16"/>
+                    <Grid ColumnDefinitions="*,*,*">
+                        <VerticalStackLayout>
+                            <Label Text="OA" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="OaCountLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="PA" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="PaCountLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2">
+                            <Label Text="Tests" FontSize="12" TextColor="Gray"/>
+                            <Label x:Name="TestCountLabel" FontAttributes="Bold" FontSize="18"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Recent Activity -->
+            <Frame Padding="14" BorderColor="#ddd" HasShadow="False">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Recent Assessments" FontAttributes="Bold" FontSize="16"/>
+                    <CollectionView x:Name="RecentAssessments" HeightRequest="180">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="6" ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Title}" FontAttributes="Bold"/>
+                                        <Label FontSize="12" Text="{Binding Type}"/>
+                                        <Label FontSize="12"
+                                               Text="{Binding EndDate, StringFormat='Ends: {0:MMM d, yyyy}'}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

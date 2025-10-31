@@ -1,0 +1,109 @@
+# =========================
+# .NET MAUI / Visual Studio Git Ignore
+# =========================
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.log
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.swp
+*.tmp
+
+# VS cache and workspace settings
+.vs/
+.idea/
+.vscode/
+*.vc.db
+*.VC.db
+*.pidb
+*.sdf
+*.dbmdl
+*.cache
+*.msscci
+*.pdb
+*.db
+
+# MAUI-specific
+*.ds_store
+appcenter-pre-build.sh
+appcenter-post-build.sh
+AppPackages/
+*.apk
+*.aab
+*.ipa
+*.xcuserstate
+
+# Build outputs for mobile targets
+**/Platforms/Android/bin/
+**/Platforms/Android/obj/
+**/Platforms/iOS/bin/
+**/Platforms/iOS/obj/
+**/Platforms/MacCatalyst/bin/
+**/Platforms/MacCatalyst/obj/
+**/Platforms/Windows/bin/
+**/Platforms/Windows/obj/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.dll
+*.exe
+
+# SQLite and local dev databases
+*.sqlite
+*.db3
+*.db-wal
+*.db-shm
+
+# Local app data or test data
+*.local.json
+appsettings.*.json
+*.env
+.env.*
+
+# IDE backups
+*~Backup/
+*.bak
+*.old
+*.orig
+
+# JetBrains Rider & ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Visual Studio test results
+TestResult*/
+*.VisualState.xml
+*.coverage
+*.coveragexml
+
+# Generated files (build or designer)
+*.g.cs
+*.i.cs
+*.Designer.cs
+*.generated.cs
+
+# Mac-specific
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# =========================
+# End of file
+# =========================

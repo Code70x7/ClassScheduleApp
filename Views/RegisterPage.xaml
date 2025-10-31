@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClassScheduleApp.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Create Account">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <!-- Card -->
+            <Frame Padding="20" CornerRadius="18" BorderColor="#E5E5F0" HasShadow="True">
+                <Frame.Shadow>
+                    <Shadow Opacity="0.25" Radius="12" Offset="0,4" />
+                </Frame.Shadow>
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="Create your account"
+                           FontAttributes="Bold" FontSize="20" />
+
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email" />
+
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Password"
+                           IsPassword="True" />
+
+                    <Entry x:Name="ConfirmEntry"
+                           Placeholder="Confirm password"
+                           IsPassword="True" />
+
+                    <Button Text="Create Account"
+                            Clicked="CreateAccount_Clicked"
+                            TextColor="White"
+                            CornerRadius="16"
+                            Padding="14,10">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#6C63FF" Offset="0.0" />
+                                <GradientStop Color="#7F78FF" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Opacity="0.25" Radius="10" Offset="0,3" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <Button Text="Back to Sign In"
+                            Clicked="BackToLogin_Clicked"
+                            CornerRadius="16"
+                            Padding="14,10"
+                            BackgroundColor="#F2F2FA"
+                            TextColor="#333">
+                        <Button.Shadow>
+                            <Shadow Opacity="0.15" Radius="8" Offset="0,2" />
+                        </Button.Shadow>
+                    </Button>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
